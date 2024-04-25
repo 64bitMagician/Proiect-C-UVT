@@ -9,9 +9,11 @@ int new_user();
 void logout();
 
 // Function declarations for book management
-void addBook();
-void removeBook();
-void displayBooks();
+void search_books();
+void make_a_loan();
+void display_loans();
+void return_books();
+void donate_books();
 
 // Utility function declaration
 void removeNewline(char *str);

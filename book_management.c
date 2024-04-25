@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include "library.h"
 
-void addBook() {
-    printf("Adding a book...\n");
+void search_books() {
+    printf("Searching for book\n");
+}
+
+void make_a_loan() {
+    printf("Searching and making a loan\n");
     // Implement the logic to add a book here
 }
 
-void removeBook() {
-    printf("Removing a book...\n");
-    // Implement the logic to remove a book here
+void display_loans() {
+    printf("Displaying loans\n");
 }
 
-void displayBooks() {
-    printf("Displaying all books...\n");
+void return_books() {
+    printf("Returning books...\n");
+}
+
+void donate_books() {
+    printf("Donating books...\n");
     // Implement the logic to display all books here
 }
