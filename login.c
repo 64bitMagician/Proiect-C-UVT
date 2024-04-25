@@ -10,7 +10,7 @@ typedef struct {
     char name[MAX_LENGTH];
     char surname[MAX_LENGTH];
 } Profile; //Profile = typedef(word used in creating variables of type Profile, which is a structure that holds two character arrays:
-//one is called 'username' and the other is called password)
+//one is called 'name' and the other is called surname)
 
 Profile profiles[MAX_PROFILES]; // we use typedef Profile to create an array of variables of type Profile.
 
@@ -48,11 +48,11 @@ void readProfiles() {
 
 
     //So while it is reading data from file, it will execute the code bellow.
-    //The format is made in such a way that it stores the string before the ',' in the username, and the string after
-    //the ',' in the password variable, which are members of the array of Profile structures called 'profiles'
+    //The format is made in such a way that it stores the string before the ',' in the name, and the string after
+    //the ',' in the surname variable, which are members of the array of Profile structures called 'profiles'
     // It stores in the profiles array starting from profiles[0]. Then it increments numProfiles everytime so that it will
     // store the data red from the file in the next profiles[] variable from the array.
-    // It also removes the newline from the end of each line of the file, so it won't also store the newline character within the password member
+    // It also removes the newline from the end of each line of the file, so it won't also store the newline character within the surname member
     // fgetc(file) (f - file get c - character) is used to read and skip a single character from the file pointed to by file, since the file
     // position indicator stops rights after encountering a whitespace a newline and so on, so we want to get rid of that newline character,
     // to continue reading.
@@ -66,16 +66,16 @@ void readProfiles() {
     fclose(file);
 }
 
-// This function takes the passed username and password from the user and checks to see if it corresponds to on of the rows within the csv file.
-int validateLogin(const char *username, const char *password) {// takes a pointer to a username and a password as parameters.
+// This function takes the passed name and surname from the user and checks to see if it corresponds to on of the rows within the csv file.
+int validateLogin(const char *name, const char *surname) {// takes a pointer to a name and a surname as parameters.
     for (int i = 0; i < numProfiles; i++) {// an iterator 'i' that will represent the profiles.
-        //if the passed username and password arguments are identitcal to one of the rows within the csv file, validateLogin will return 1.
-        if (strcmp(username, profiles[i].name) == 0 && strcmp(password, profiles[i].surname) == 0) {
+        //if the passed name and surname arguments are identitcal to one of the rows within the csv file, validateLogin will return 1.
+        if (strcmp(name, profiles[i].name) == 0 && strcmp(surname, profiles[i].surname) == 0) {
             return 1; // Return 1 indicating login successful
         }
     }
 
-    // if it gets to this point, it means that the function did not find a match between the passed username and password of the user
+    // if it gets to this point, it means that the function did not find a match between the passed name and surname of the user
     // and one of the profiles from the csv file
     // Therfore, it will print an error message and return 0
     printf("Invalid name or surname!\n");
@@ -86,7 +86,7 @@ int validateLogin(const char *username, const char *password) {// takes a pointe
 // loop back to the login or new user menu.
 int login() {
     // when called, login() will first call the readProfiles() function, which will store the values within the csv file into an array of
-    // structures of type Profile, called profiles[]. In profiles[] there are the member for username and the member for password.
+    // structures of type Profile, called profiles[]. In profiles[] there are the member for name and the member for surname.
     readProfiles();
     // So after this call, we now have access to the data within the csv files stored in profiles[]
 
@@ -97,17 +97,17 @@ int login() {
     char name[MAX_LENGTH];
     char surname[MAX_LENGTH];
 
-    // GET THE USERNAME FROM THE USER
+    // GET THE name FROM THE USER
     printf("Enter name:");
-    scanf("%s", name); // Read entire line for username
+    scanf("%s", name); // Read entire line for name
     getchar(); // Consume the newline character left by scanf
 
-    // GET THE PASSWORD FROM THE USER
+    // GET THE surname FROM THE USER
     printf("Enter surname:");
-    scanf("%s", surname); // Read entire line for password
+    scanf("%s", surname); // Read entire line for surname
     getchar(); // Consume the newline character left by scanf
 
-    // we pass the username and password from the user to validateLogin() function, which will check if the input from the user corresponds to
+    // we pass the name and surname from the user to validateLogin() function, which will check if the input from the user corresponds to
     // one of the profiles in the csv file. If it does, it will return 1, and execute the if statement, which will print a message for succesful login,
     // and then return 1 to main.c so it will continue the program within the state of a logged in user.
     // If it does not find a corelation with the given input and the stored profiles in the csv, then it will print a message for login failure,
@@ -135,15 +135,15 @@ int new_user() {
     char name[MAX_LENGTH];
     char surname[MAX_LENGTH];
 
-    // GET USERNAME
+    // GET name
     // in scanf %s: Reads a string of characters until it encounters whitespace (space, tab, newline), that leftover will remain in the input buffer.
     printf("Enter your name:");
-    scanf("%s", name); // Read entire line for username
+    scanf("%s", name); // Read entire line for name
     getchar(); // Consume the newline character left by scanf
 
-    // Check if the username already exists
+    // Check if the name already exists
     for (int i = 0; i < numProfiles; i++) {
-        if (strcmp(name, profiles[i].name) == 0) {// if inputted username is identical to one username from the csv file,
+        if (strcmp(name, profiles[i].name) == 0) {// if inputted name is identical to one name from the csv file,
             // it will close the file, print message, and return 0 to main.c which will cause the program to loop back to MENU 1
             printf("Name already exists! Please choose a different name for your profile.\n");
             fclose(file);
@@ -151,15 +151,15 @@ int new_user() {
         }
     }
 
-    // GET PASSWORD, same story as GET USERNAME
+    // GET surname, same story as GET name
     printf("Enter your surname:");
-    scanf("%s", surname); // Read entire line for password
+    scanf("%s", surname); // Read entire line for surname
     getchar(); // Consume the newline character left by scanf
 
-    // fprintf will write to 'file', under the specified format (string,string\n), the passed username and password by the user
+    // fprintf will write to 'file', under the specified format (string,string\n), the passed name and surname by the user
     fprintf(file, "%s,%s\n", name, surname);
 
-    // after passing a username and password, the file closes
+    // after passing a name and surname, the file closes
     fclose(file);
 
     // if you get to this point, it means that no errors and no return 0's, you get a succesful message and return 1 to main.c, which
