@@ -1,0 +1,31 @@
+intr-o functie
+
+arguments = what is passed to the functions
+parameters = the variables declared within the function
+
+
+
+
+
+
+
+
+===========================================================================================================================================================================================================================
+INPUT BUFFER
+When you use scanf to read input from the standard input (e.g., keyboard), the newline character (\n) that is automatically inserted when you press Enter will remain in the input buffer after scanf reads the data you provided.
+
+Here's what happens:
+
+You enter some data followed by pressing Enter.
+scanf reads the data up to, but not including, the newline character.
+The newline character (\n) remains in the input buffer.
+If you perform another input operation (like another scanf, fgets, or getchar), the newline character (\n) left in the buffer will be read as part of the new input, possibly leading to unexpected behavior.
+
+To handle this situation and avoid leaving characters in the input buffer, you can:
+
+Consume and discard the remaining characters in the input buffer, including the newline character.
+Use fgets to read input line by line, including newline characters, and then process the input accordingly.
+
+
+IN STD (STANDARD INPUT STREAM), there is just one input buffer
+===========================================================================================================================================================================================================================
