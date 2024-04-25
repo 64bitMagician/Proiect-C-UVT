@@ -13,7 +13,6 @@ int main() {
         printf("3. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-
         switch (choice) {
             case 1: // login case
                 if (login()) {
@@ -28,6 +27,7 @@ int main() {
                         printf("5. Logout\n");
                         printf("Enter your choice: ");
                         scanf("%d", &loggedInChoice);
+                        getc(stdin);
 
                         switch (loggedInChoice) {
                             case 1:

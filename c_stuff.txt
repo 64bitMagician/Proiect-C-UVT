@@ -29,3 +29,16 @@ Use fgets to read input line by line, including newline characters, and then pro
 
 IN STD (STANDARD INPUT STREAM), there is just one input buffer
 ===========================================================================================================================================================================================================================
+
+
+
+
+=========================================================================================================================
+VARIABLE DECLARIATION & VARIALE DEFINITION
+
+Declaring a variable means just to introduce it to the compiler, with it's type and name, but it does not alocate any memory to it yet,
+or any value. In c, writing int a; won't allocate memory until you also assign a value to it.
+
+Defining a variable means allocating memory space and presiumably a value.
+
+You can use keyword 'extern' to tell the compiler that the variable you are declaring in the current file, is defined in a different file.
